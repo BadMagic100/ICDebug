@@ -1,4 +1,6 @@
+using ICDebug.Commands;
 using Modding;
+using ModTerminal;
 using System;
 
 namespace ICDebug
@@ -30,7 +32,7 @@ namespace ICDebug
         {
             Log("Initializing");
 
-            
+            CommandTable.RegisterCommand(new("giveitem", GiveItem.GiveItemCommand));
 
             Log("Initialized");
         }
