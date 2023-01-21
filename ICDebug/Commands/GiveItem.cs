@@ -14,7 +14,8 @@ namespace ICDebug.Commands
             [HelpDocumentation("Whether to give the item from a placement")] bool fromPlacement = false,
             [HelpDocumentation("The name of the placement to give item from, if giving from a placement. " 
                 + "If not specified, the item will be given from the first available placement that has a matching item.")] 
-            string? placementName = null)
+            string? placementName = null
+        )
         {
             if (placementName != null && !fromPlacement)
             {
