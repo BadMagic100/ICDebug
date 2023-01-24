@@ -34,6 +34,7 @@ namespace ICDebug
 
             CommandTable.RegisterCommand(new("giveitem", GiveItem.GiveItemCommand));
             CommandTable.RegisterCommand(new("finditem", FindItem.FindItemCommand));
+            CommandTable.RegisterCommand(new("previewplacement", PreviewPlacement.PreviewPlacementCommand));
             CommandTable.RegisterCommand(new("resetplacement", ResetPlacement.ResetPlacementCommand));
 
             Log("Initialized");
