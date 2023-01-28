@@ -11,8 +11,9 @@ namespace ICDebug.Commands
     {
         [HelpDocumentation("Finds the locations where a given item is placed.")]
         public static string FindItemCommand(
-            [HelpDocumentation("The name of the item to look for.")] string itemName, 
-            [HelpDocumentation("The maximum amount of results to show.")] uint? limit = null, 
+            [HelpDocumentation("The name of the item to look for.")] string itemName,
+            [HelpDocumentation("The maximum amount of results to show.")] uint? limit = null,
+            [HelpDocumentation("The number of results to skip past.")] uint offset = 0,
             [HelpDocumentation("Whether or not to follow progressive items "
                 + "(i.e. should searching Mothwing_Cloak also find Shade_Cloak).")] 
             bool followChains = false, 
@@ -31,13 +32,20 @@ namespace ICDebug.Commands
                     {
                         if (!(skipFound && item.WasEverObtained()))
                         {
-                            if (item.name == itemName)
+                            if (offset == 0)
                             {
-                                foundItems.Add((plt, item));
+                                if (item.name == itemName)
+                                {
+                                    foundItems.Add((plt, item));
+                                }
+                                else if (followChains && item.GetTag(out ItemChainTag ict) && ChainContains(itemName, ict))
+                                {
+                                    foundItems.Add((plt, item));
+                                }
                             }
-                            else if (followChains && item.GetTag(out ItemChainTag ict) && ChainContains(itemName, ict))
+                            else
                             {
-                                foundItems.Add((plt, item));
+                                offset--;
                             }
 
                             if (foundItems.Count >= limit)

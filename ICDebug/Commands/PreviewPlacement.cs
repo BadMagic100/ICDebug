@@ -2,6 +2,7 @@
 using ItemChanger.Internal;
 using ItemChanger.Placements;
 using ItemChanger.Tags;
+using ModTerminal;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,7 +10,12 @@ namespace ICDebug.Commands
 {
     internal static class PreviewPlacement
     {
-        public static string PreviewPlacementCommand(string placementName, bool ignorePreviewHiding = false)
+        [HelpDocumentation("Shows the items at a placement and their costs. " +
+            "Does not add the previewed visit state or fire the OnPreview event.")]
+        public static string PreviewPlacementCommand(
+            [HelpDocumentation("The name of the placement to preview.")] string placementName, 
+            [HelpDocumentation("Whether to ignore tags that hide item names and costs.")] bool ignorePreviewHiding = false
+        )
         {
             if (Ref.Settings.Placements.TryGetValue(placementName, out AbstractPlacement plt))
             {

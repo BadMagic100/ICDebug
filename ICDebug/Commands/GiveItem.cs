@@ -58,6 +58,7 @@ namespace ICDebug.Commands
             try
             {
                 item.Give(null, inf);
+                item.Unload();
             }
             catch (Exception ex)
             {
