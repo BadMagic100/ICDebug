@@ -1,6 +1,6 @@
 ﻿using ItemChanger;
 using ItemChanger.Internal;
-using ModTerminal;
+using ModTerminal.Commands;
 using System;
 using System.Collections.Generic;
 

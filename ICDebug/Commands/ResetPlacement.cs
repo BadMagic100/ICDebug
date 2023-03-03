@@ -2,7 +2,7 @@
 using ItemChanger.Internal;
 using ItemChanger.Placements;
 using Modding;
-using ModTerminal;
+using ModTerminal.Commands;
 
 namespace ICDebug.Commands
 {

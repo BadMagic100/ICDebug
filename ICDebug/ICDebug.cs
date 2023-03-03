@@ -1,6 +1,7 @@
 using ICDebug.Commands;
 using Modding;
 using ModTerminal;
+using ModTerminal.Commands;
 using System;
 
 namespace ICDebug
@@ -32,11 +33,20 @@ namespace ICDebug
         {
             Log("Initializing");
 
-            CommandTable.RegisterCommand(new("giveitem", GiveItem.GiveItemCommand));
-            CommandTable.RegisterCommand(new("finditem", FindItem.FindItemCommand));
-            CommandTable.RegisterCommand(new("placeitem", PlaceItem.PlaceItemCommand));
-            CommandTable.RegisterCommand(new("previewplacement", PreviewPlacement.PreviewPlacementCommand));
-            CommandTable.RegisterCommand(new("resetplacement", ResetPlacement.ResetPlacementCommand));
+            CommandTable icCommands = new("Commands for interacting with ItemChanger saves.");
+            ModTerminalMod.Instance.PrimaryCommandTable.RegisterGroup("ic", icCommands);
+
+            CommandTable itemCommands = new("Commands for interacting with ItemChanger items.");
+            itemCommands.RegisterCommand(new("give", GiveItem.GiveItemCommand));
+            itemCommands.RegisterCommand(new("find", FindItem.FindItemCommand));
+            itemCommands.RegisterCommand(new("findbytype", FindItem.FindItemByTypeCommand));
+            itemCommands.RegisterCommand(new("place", PlaceItem.PlaceItemCommand));
+            icCommands.RegisterGroup("item", itemCommands);
+
+            CommandTable placementCommands = new("Commands for interacting with ItemChanger placements.");
+            placementCommands.RegisterCommand(new("preview", PreviewPlacement.PreviewPlacementCommand));
+            placementCommands.RegisterCommand(new("reset", ResetPlacement.ResetPlacementCommand));
+            icCommands.RegisterGroup("placement", placementCommands);
 
             Log("Initialized");
         }

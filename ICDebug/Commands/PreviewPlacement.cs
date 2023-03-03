@@ -2,7 +2,7 @@
 using ItemChanger.Internal;
 using ItemChanger.Placements;
 using ItemChanger.Tags;
-using ModTerminal;
+using ModTerminal.Commands;
 using System.Collections.Generic;
 using System.Text;
 
