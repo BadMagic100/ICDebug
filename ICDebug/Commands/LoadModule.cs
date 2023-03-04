@@ -14,7 +14,7 @@ namespace ICDebug.Commands
             [ParameterConverter<ModuleTypeConverter>]
             Type moduleType,
             [HelpDocumentation("Whether the module should be a singleton, i.e., whether to ignore the request if the module already exists.")]
-            bool singleton = false
+            bool singleton = true
         )
         {
             Module? existingModule = ItemChangerMod.Modules.Modules
