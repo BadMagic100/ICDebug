@@ -48,6 +48,10 @@ namespace ICDebug
             placementCommands.RegisterCommand(new("reset", ResetPlacement.ResetPlacementCommand));
             icCommands.RegisterGroup("placement", placementCommands);
 
+            CommandTable moduleCommands = new("Commands for interacting with ItemChanger modules.");
+            moduleCommands.RegisterCommand(new("add", LoadModule.LoadModuleCommand));
+            icCommands.RegisterGroup("module", moduleCommands);
+
             Log("Initialized");
         }
     }
