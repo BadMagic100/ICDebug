@@ -13,15 +13,15 @@ namespace ICDebug.Commands
             [HelpDocumentation("The type of module to load.")]
             [ParameterConverter<ModuleTypeConverter>]
             Type moduleType,
-            [HelpDocumentation("Whether the module should be a singleton, i.e., whether to ignore the request if the module already exists.")]
-            bool singleton = true
+            [HelpDocumentation("Whether multiple instances of this module type can exist.")]
+            bool allowMultiple = false
         )
         {
             Module? existingModule = ItemChangerMod.Modules.Modules
                 .Where(m => moduleType.IsAssignableFrom(m.GetType()))
                 .FirstOrDefault();
 
-            if (existingModule != null && singleton)
+            if (existingModule != null && !allowMultiple)
             {
                 return $"A module of type {moduleType.Name} has already been loaded.";
             }
