@@ -1,2 +1,2 @@
 ItemChanger
-ModTerminal
+ModTerminal from https://github.com/BadMagic100/ModTerminal/releases/download/v2.0.8464.7371/ModTerminal.zip
